@@ -1,0 +1,72 @@
+@startuml 
+title WhatLyric
+package WhatLyric{
+  +class WhatLyric.Main{
+    +{static}main(args:String[]):void
+  }
+  package Model{
+    +class Musik{
+
+    }
+    +class Playlist{
+
+    }
+  }
+  package Resource{
+    +class PlayerState{
+
+    }
+  }
+  package Thread{
+    +class MusicPlayer extends Thread{
+
+    }
+    +class LyricDisplayer extends Thread{
+
+    }
+    +class NotificationDisplayer extends Thread{
+
+    }
+    +class ControlDisplayer extends Thread{
+
+    }
+
+  }
+  package Utils{
+    +class TimeFormatter{
+
+    }
+
+  }
+}
+Musik <-- Playlist
+ArrayList <-- Playlist
+List <-- Playlist
+PlayerState <-- MusicPlayer
+PlayerState <-- LyricDisplayer
+PlayerState <-- NotificationDisplayer
+PlayerState <-- ControlDisplayer
+Musik <-- PlayerState
+Playlist <-- PlayerState
+TimeFormatter <.. MusicPlayer
+Musik <.. MusicPlayer
+TimeFormatter <.. LyricDisplayer
+Scanner <.. ControlDisplayer
+TimeFormatter <.. ControlDisplayer
+Playlist <.. Main
+PlayerState <.. Main
+MusicPlayer <.. Main
+LyricDisplayer <.. Main
+NotificationDisplayer <.. Main
+ControlDisplayer <.. Main
+/'
+-ini program pemutar musik multithreading
+-tujuan program adalah implementasi thread maka user bisa input kapanpun walaupun program sedang menjalankan kegiatan lain
+-kontrol untuk memberikan user pilihan pemutar musik berupa pause, next, resume, stop, show playlist, previous, choice music by-n, quit 
+-kontrol muncul sekali saja di awal
+-pilihan stop mengulang timer ke 0 lagi, lirik terdampak
+-next dan previous itu berganti playlist
+-notifikasi akan menampilkan hal yang berhubungan dengan status musik setiap menit meskipun user lagi menghentikan lagu dan program belum dimatikan
+
+  '/
+@enduml
