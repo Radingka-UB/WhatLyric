@@ -67,6 +67,6 @@ ControlDisplayer <.. Main
 -pilihan stop mengulang timer ke 0 lagi, lirik terdampak
 -next dan previous itu berganti playlist
 -notifikasi akan menampilkan hal yang berhubungan dengan status musik setiap menit meskipun user lagi menghentikan lagu dan program belum dimatikan
-
+-kontrol tetap thread karena menunggu input user walaupun thread lain jalan
   '/
 @enduml
