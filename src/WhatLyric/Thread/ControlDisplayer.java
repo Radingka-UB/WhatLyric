@@ -97,15 +97,21 @@ public class ControlDisplayer extends Thread{
                     if(input.startsWith("select ")){
                         try{
                             int num=Integer.parseInt(input.substring(7).trim());
-                            if(playlist!=null&&num>=1&&num<=playlist.getTrackCount()){
-                                Music selMusic=playlist.getTracks().get(num-1);
-                                System.out.println("Selected Music: "+selMusic.getTitle());
-                            }else{
-                                System.out.println("Music Number Not Valid (1-"+ (playlist!=null?playlist.getTrackCount():"-1")+").");
-                            }
+                            int index=num-1;
+                            state.selectTrack(index);
+                            Music selMusic=playlist.getTracks().get(num-1);
+                            System.out.println("Selected Music: "+selMusic.getTitle());
+                            System.out.println("Type 'play' to Start Music");                            
                         }catch(NumberFormatException e){
                             System.out.println("Command Format Not Valid. Use \"select <number>\"");
+                        }catch(IllegalArgumentException e){
+                            System.out.println(e.getMessage());
+                            System.out.println("Valid Range: 1 - "+(playlist!=null?playlist.getTrackCount():0));
+                        }catch(IllegalStateException e){
+                            System.out.println(e.getMessage());
                         }
+                    }else{
+                        System.out.println("Unknown Command!");
                     }
                     break;
             }
