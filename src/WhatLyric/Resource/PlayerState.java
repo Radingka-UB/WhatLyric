@@ -17,6 +17,15 @@ public class PlayerState {
     private Music currentMusic;
     private int currentPositionSeconds;
     private Playlist playlist;
+    private volatile boolean running=true;
+
+    public synchronized boolean isRunning(){
+        return running;
+    }
+
+    public synchronized void shutdown(){
+        this.running=false;
+    }
 
     public PlayerState() {
         this.state = State.STOPPED;

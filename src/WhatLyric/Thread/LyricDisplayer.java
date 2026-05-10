@@ -11,6 +11,20 @@ public class LyricDisplayer extends Thread{
     }
 
     public void run(){
+        while(state.isRunning()){
+            if(state.getState()==PlayerState.State.PLAYING){
+                Music currMusic=state.getCurrentMusic();
+                int currTime=state.getCurrentPositionSeconds();
 
+                if(currMusic !=null){
+
+                }
+            }
+            try{
+                Thread.sleep(1000);
+            }catch(InterruptedException e){
+                break;
+            }
+        }
     }
 }

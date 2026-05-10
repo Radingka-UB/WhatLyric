@@ -5,7 +5,7 @@ package WhatLyric{
     +{static}main(args:String[]):void
   }
   package Model{
-    +class Musik{
+    +class Music{
 
     }
     +class Playlist{
@@ -39,17 +39,18 @@ package WhatLyric{
 
   }
 }
-Musik <-- Playlist
+Music <-- Playlist
 ArrayList <-- Playlist
 List <-- Playlist
 PlayerState <-- MusicPlayer
 PlayerState <-- LyricDisplayer
 PlayerState <-- NotificationDisplayer
 PlayerState <-- ControlDisplayer
-Musik <-- PlayerState
+Music <.. NotificationDisplayer
+Music <-- PlayerState
 Playlist <-- PlayerState
 TimeFormatter <.. MusicPlayer
-Musik <.. MusicPlayer
+Music <.. MusicPlayer
 TimeFormatter <.. LyricDisplayer
 Scanner <.. ControlDisplayer
 TimeFormatter <.. ControlDisplayer

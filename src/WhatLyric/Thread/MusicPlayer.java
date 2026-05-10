@@ -11,22 +11,15 @@ public class MusicPlayer extends Thread{
     }
     public void run(){
         while(state.isRunning()){
-            if(state.isPlaying()){
+            if(state.getState()==PlayerState.State.PLAYING){
                 try{
                     Thread.sleep(1000);
                 }catch(InterruptedException e){
                     break;
                 }
 
-                int newTime=state.getCurrentTime()+1;
-                state.setCurrentTime(newTime);
+                state.tick();
 
-                Music currMusic=state.getCurrentTime();
-                if(currMusic != null && newTime >= currMusic.getDuration()){
-                    state.getPlaylist().next();
-                    state.setCurrentTime(0);
-                    state.setCurrentMusic(state.getPlaylist().getCurrent());
-                }
             }else{
                 try{
                     Thread.sleep(200);
