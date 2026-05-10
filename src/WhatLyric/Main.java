@@ -26,7 +26,7 @@ public class Main {
         NotificationDisplayer notificationDisplayer = new NotificationDisplayer(state);
         ControlDisplayer controlDisplayer = new ControlDisplayer(state);
 
-        System.out.println("🎵 Starting all threads...\n");
+        System.out.println("Starting all threads...\n");
         musicPlayer.start();
         lyricDisplayer.start();
         notificationDisplayer.start();
@@ -38,12 +38,12 @@ public class Main {
             System.err.println("Main thread interrupted");
         }
 
-        System.out.println("\n⏹️  Shutting down...");
+        System.out.println("\nShutting down...");
         musicPlayer.interrupt();
         lyricDisplayer.interrupt();
         notificationDisplayer.interrupt();
         
-        System.out.println("✅ WhatLyric stopped. Thank you!");
+        System.out.println("WhatLyric stopped. Thank you!");
     }
 
     //Membuat playlist dengan 3 lagu
