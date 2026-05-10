@@ -22,24 +22,17 @@ public class Main {
 
         MusicPlayer musicPlayer = new MusicPlayer(state);
         LyricDisplayer lyricDisplayer = new LyricDisplayer(state);
-<<<<<<< HEAD
-=======
         NotificationDisplayer notificationDisplayer = new NotificationDisplayer(state);
         ControlDisplayer controlDisplayer = new ControlDisplayer(state,playlist);
 
         System.out.println("Starting all threads\n");
->>>>>>> 505ddb589b5a6ee314a8e017466bfc1c5dbacb8b
         musicPlayer.start();
         lyricDisplayer.start();
-
-        Thread notifThread = new Thread(new NotificationDisplayer(state)::run, "NotificationDisplayer");
-        Thread controlThread = new Thread(new ControlDisplayer(state, playlist)::run, "ControlDisplayer");
-        
-        notifThread.start();
-        controlThread.start();
+        notificationDisplayer.start();
+        controlDisplayer.start();
 
         try {
-            controlThread.join();
+            controlDisplayer.join();
         } catch (InterruptedException e) {
             System.err.println("Main thread interrupted");
         }
@@ -47,7 +40,7 @@ public class Main {
         System.out.println("\nShutting down");
         musicPlayer.interrupt();
         lyricDisplayer.interrupt();
-        notifThread.interrupt(); 
+        notificationDisplayer.interrupt();
         
         System.out.println("WhatLyric stopped");
     }
@@ -68,11 +61,7 @@ public class Main {
         Music lagu2 = new Music(
             "Kicau Mania",
             "Ndarboy Genk, Banditoz Yaow 86, BoyCord",
-<<<<<<< HEAD
-            180,
-=======
             300,
->>>>>>> 505ddb589b5a6ee314a8e017466bfc1c5dbacb8b
             createLirikKicauMania()
         );
         playlist.addTrack(lagu2);
