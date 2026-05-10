@@ -13,7 +13,7 @@ public class NotificationDisplayer extends Thread{
     public void run(){
         while(state.isRunning()){
             try{
-                Thread.sleep(60*100);
+                Thread.sleep(60*1000);
             }catch(InterruptedException e){
                 break;
             }
