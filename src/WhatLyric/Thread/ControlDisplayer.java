@@ -4,9 +4,8 @@ import WhatLyric.Resource.PlayerState;
 import WhatLyric.Model.Playlist;
 import WhatLyric.Model.Music;
 import java.util.Scanner;
-import java.util.ArrayList;
 
-public class ControlDisplayer {
+public class ControlDisplayer extends Thread{
     private PlayerState state;
     private Playlist playlist;
     private Scanner scanner;
