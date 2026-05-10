@@ -3,7 +3,7 @@ package WhatLyric.Thread;
 import WhatLyric.Resource.PlayerState;
 import WhatLyric.Model.Music;;
 
-public class NotificationDisplayer {
+public class NotificationDisplayer extends Thread{
     private PlayerState state;
 
     public NotificationDisplayer(PlayerState state){
@@ -13,7 +13,7 @@ public class NotificationDisplayer {
     public void run(){
         while(state.isRunning()){
             try{
-                Thread.sleep(60*100);
+                Thread.sleep(60*1000);
             }catch(InterruptedException e){
                 break;
             }
