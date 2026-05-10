@@ -1,7 +1,10 @@
 package WhatLyric.Thread;
 
 import WhatLyric.Resource.PlayerState;
+<<<<<<< HEAD
 import WhatLyric.Model.Music;
+=======
+>>>>>>> 40ac271c21b5ad2fd26e7b9db4ba80cad8c330b9
 
 public class MusicPlayer extends Thread {
     private final PlayerState state;
