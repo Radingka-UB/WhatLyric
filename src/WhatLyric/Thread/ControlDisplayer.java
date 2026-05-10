@@ -13,10 +13,9 @@ public class ControlDisplayer extends Thread{
         this.state=state;
         this.playlist=playlist;
         this.scanner=new Scanner(System.in);
-        setNotation();
     }
 
-    private void setNotation(){
+    private void showMenu(){
         System.out.println("\n|/| Music Controller\n"+
         "Available Command:\n"+
         "<play> (Start/Continue Music)\n"+
@@ -32,6 +31,7 @@ public class ControlDisplayer extends Thread{
     }
 
     public void run(){
+        showMenu();
         while(state.isRunning()){
             System.out.print("Cmd> ");
             String input=scanner.nextLine().trim().toLowerCase();
@@ -39,7 +39,7 @@ public class ControlDisplayer extends Thread{
             if(input.isEmpty())continue;
 
             switch (input) {
-                case "Play":
+                case "play":
                     try{
                         state.play();
                         System.out.println("Music Played/Continued!");
@@ -96,7 +96,7 @@ public class ControlDisplayer extends Thread{
                 default:
                     if(input.startsWith("select ")){
                         try{
-                            int num=Integer.parseInt(input.substring(6).trim());
+                            int num=Integer.parseInt(input.substring(7).trim());
                             if(playlist!=null&&num>=1&&num<=playlist.getTrackCount()){
                                 Music selMusic=playlist.getTracks().get(num-1);
                                 System.out.println("Selected Music: "+selMusic.getTitle());
@@ -110,6 +110,7 @@ public class ControlDisplayer extends Thread{
                     break;
             }
         }
+        scanner.close();
     }
 
 }
