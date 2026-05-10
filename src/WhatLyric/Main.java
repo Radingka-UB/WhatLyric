@@ -15,35 +15,29 @@ public class Main {
         System.out.println("=   Multi-threading Music & Lyrics      =");
         System.out.println("=========================================\n");
 
-        //PLAYLIST DENGAN 3 LAGU
         Playlist playlist = createPlaylist();
         
-        //INISIALISASI SHARED STATE
         PlayerState state = new PlayerState();
         state.setPlaylist(playlist);
         state.setCurrentTrackIndex(0);
 
-        //BUAT SEMUA THREAD
         MusicPlayer musicPlayer = new MusicPlayer(state);
         LyricDisplayer lyricDisplayer = new LyricDisplayer(state);
         NotificationDisplayer notificationDisplayer = new NotificationDisplayer(state);
         ControlDisplayer controlDisplayer = new ControlDisplayer(state);
 
-        //START SEMUA THREAD
         System.out.println("🎵 Starting all threads...\n");
         musicPlayer.start();
         lyricDisplayer.start();
         notificationDisplayer.start();
         controlDisplayer.start();
 
-        //TUNGGU CONTROL THREAD SELESAI (user quit)
         try {
             controlDisplayer.join();
         } catch (InterruptedException e) {
             System.err.println("Main thread interrupted");
         }
 
-        //GRACEFUL SHUTDOWN
         System.out.println("\n⏹️  Shutting down...");
         musicPlayer.interrupt();
         lyricDisplayer.interrupt();
@@ -52,9 +46,8 @@ public class Main {
         System.out.println("✅ WhatLyric stopped. Thank you!");
     }
 
-    /**
-     * Membuat playlist dengan 3 lagu
-     */
+    //Membuat playlist dengan 3 lagu
+
     private static Playlist createPlaylist() {
         List<Musik> songs = new ArrayList<>();
 
@@ -76,7 +69,7 @@ public class Main {
         );
         songs.add(lagu2);
 
-        // Lagu 3: NO BATIDÃO
+        // Lagu 3: NO BATIDAO
         Musik lagu3 = new Musik(
             "NO BATIDÃO",
             "ZXKAI, slxughter",
@@ -88,9 +81,8 @@ public class Main {
         return new Playlist(songs);
     }
 
-    /**
-     * Lirik: Terima Kasih Pak Jokowi
-     */
+    //Lirik: Terima Kasih Pak Jokowi
+
     private static List<String> createLirikTerimaKasih() {
         List<String> lirik = new ArrayList<>();
         lirik.add("[0:00] Terima Kasih Pak Jokowi");
@@ -139,9 +131,8 @@ public class Main {
         return lirik;
     }
 
-    /**
-     * Lirik: Kicau Mania
-     */
+    //Lirik: Kicau Mania
+
     private static List<String> createLirikKicauMania() {
         List<String> lirik = new ArrayList<>();
         lirik.add("[0:00] Kicau Mania");
@@ -208,9 +199,8 @@ public class Main {
         return lirik;
     }
 
-    /**
-     * Lirik: NO BATIDÃO
-     */
+    //Lirik: NO BATIDAO
+
     private static List<String> createLirikNoBatidao() {
         List<String> lirik = new ArrayList<>();
         lirik.add("[0:00] NO BATIDÃO");
