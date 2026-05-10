@@ -23,6 +23,18 @@ public class PlayerState {
         return running;
     }
 
+    public synchronized void selectTrack(int index){
+        if(playlist ==null||playlist.getTrackCount()==0){
+            throw new IllegalStateException("No Playlist Loaded!");
+        }
+        if(index<0 || index >= playlist.getTrackCount()){
+            throw new IllegalArgumentException("Track Index Out of Range: "+index);
+        }
+        this.currentMusic=playlist.getTracks().get(index);
+        this.currentPositionSeconds=0;
+        this.state=State.STOPPED;
+    }
+
     public synchronized void shutdown(){
         this.running=false;
     }
