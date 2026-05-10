@@ -20,7 +20,7 @@ public class LyricDisplayer extends Thread{
                 if(currMusic !=null){
                     String lyric=getLyricAtTime(currMusic, currTime);
                     if(lyric!=null){
-                        System.out.println("=> "+lyric);
+                        System.out.println("\r=> "+lyric);
                     }
                 }
             }

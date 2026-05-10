@@ -35,11 +35,12 @@ public class NotificationDisplayer extends Thread{
                     status="<? Unknown";
             }
             String timeFormatted=state.getCurrentPositionFormatted();
-            System.out.println("\n|/| Notification");
+            System.out.println("\r\n|/| Notification");
             System.out.println("Lagu: "+title);
             System.out.println("Status: "+status);
             System.out.println("Waktu: "+timeFormatted);
             System.out.println("|/|____________");
+            System.out.print("Cmd> ");
         }
     }
 }
