@@ -17,6 +17,11 @@ public class Playlist {
         this.tracks = new ArrayList<>();
     }
 
+    public Playlist(List<Music> tracks) {
+        this.name = Objects.requireNonNull("Playlist", "name cannot be null");
+        this.tracks = new ArrayList<>();
+    }
+
     public String getName() {
         return name;
     }

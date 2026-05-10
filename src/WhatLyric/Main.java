@@ -36,14 +36,13 @@ public class Main {
         notificationDisplayer.start();
         controlDisplayer.start();
 
-        //TUNGGU CONTROL THREAD SELESAI (user quit)
+        //TUNGGU user quit
         try {
             controlDisplayer.join();
         } catch (InterruptedException e) {
             System.err.println("Main thread interrupted");
         }
 
-        //GRACEFUL SHUTDOWN
         System.out.println("\n[-]  Shutting down...");
         musicPlayer.interrupt();
         lyricDisplayer.interrupt();
@@ -62,7 +61,7 @@ public class Main {
         Music lagu1 = new Music(
             "Terima Kasih Pak Jokowi",
             "Kang Lidan",
-            "240",
+            240,
             createLirikTerimaKasih()
         );
         songs.add(lagu1);
@@ -71,7 +70,7 @@ public class Main {
         Music lagu2 = new Music(
             "Kicau Mania",
             "Ndarboy Genk, Banditoz Yaow 86, BoyCord",
-            "300",
+            300,
             createLirikKicauMania()
         );
         songs.add(lagu2);
@@ -80,7 +79,7 @@ public class Main {
         Music lagu3 = new Music(
             "NO BATIDÃO",
             "ZXKAI, slxughter",
-            "180",
+            180,
             createLirikNoBatidao()
         );
         songs.add(lagu3);

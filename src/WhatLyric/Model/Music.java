@@ -13,14 +13,14 @@ public class Music {
     private final int durationSeconds;
     private final List<String> lyrics;
 
-    public Music(String title, String artist, int durationSeconds) {
+    public Music(String title, String artist, int durationSeconds, List<String> lyrics) {
         this.title = Objects.requireNonNull(title, "title cannot be null");
         this.artist = Objects.requireNonNull(artist, "artist cannot be null");
         if (durationSeconds < 0) {
             throw new IllegalArgumentException("duration cannot be negative");
         }
         this.durationSeconds = durationSeconds;
-        this.lyrics = new ArrayList<>();
+        this.lyrics = lyrics;
     }
 
     public String getTitle() {
