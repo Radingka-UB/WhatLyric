@@ -3,7 +3,7 @@ package WhatLyric.Thread;
 import WhatLyric.Resource.PlayerState;
 import WhatLyric.Model.Music;;
 
-public class NotificationDisplayer {
+public class NotificationDisplayer extends Thread{
     private PlayerState state;
 
     public NotificationDisplayer(PlayerState state){

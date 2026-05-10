@@ -23,7 +23,7 @@ public class Main {
         MusicPlayer musicPlayer = new MusicPlayer(state);
         LyricDisplayer lyricDisplayer = new LyricDisplayer(state);
         NotificationDisplayer notificationDisplayer = new NotificationDisplayer(state);
-        ControlDisplayer controlDisplayer = new ControlDisplayer(state);
+        ControlDisplayer controlDisplayer = new ControlDisplayer(state,playlist);
 
         System.out.println("Starting all threads\n");
         musicPlayer.start();
@@ -61,6 +61,7 @@ public class Main {
         Music lagu2 = new Music(
             "Kicau Mania",
             "Ndarboy Genk, Banditoz Yaow 86, BoyCord",
+            300,
             createLirikKicauMania()
         );
         playlist.addTrack(lagu2);
