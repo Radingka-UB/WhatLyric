@@ -1,6 +1,10 @@
-package WhatLyric;
+package WhatLyric.Resource;
 
 import java.util.Objects;
+
+import WhatLyric.Model.Music;
+import WhatLyric.Model.Playlist;
+import WhatLyric.Utils.TimeFormatter;
 
 public class PlayerState {
     public enum State {
@@ -10,7 +14,7 @@ public class PlayerState {
     }
 
     private State state;
-    private Musik currentMusic;
+    private Music currentMusic;
     private int currentPositionSeconds;
     private Playlist playlist;
 
@@ -23,7 +27,7 @@ public class PlayerState {
         return state;
     }
 
-    public synchronized Musik getCurrentMusic() {
+    public synchronized Music getCurrentMusic() {
         return currentMusic;
     }
 

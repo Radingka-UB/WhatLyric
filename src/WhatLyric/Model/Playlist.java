@@ -1,13 +1,15 @@
-package WhatLyric;
+package WhatLyric.Model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
+import WhatLyric.Utils.TimeFormatter;
+
 public class Playlist {
     private final String name;
-    private final List<Musik> tracks;
+    private final List<Music> tracks;
     private int currentTrackIndex = 0;
 
     public Playlist(String name) {
@@ -19,30 +21,30 @@ public class Playlist {
         return name;
     }
 
-    public void addTrack(Musik musik) {
-        tracks.add(Objects.requireNonNull(musik, "musik cannot be null"));
+    public void addTrack(Music music) {
+        tracks.add(Objects.requireNonNull(music, "music cannot be null"));
     }
 
-    public boolean removeTrack(Musik musik) {
-        return tracks.remove(musik);
+    public boolean removeTrack(Music music) {
+        return tracks.remove(music);
     }
 
     public int getTrackCount() {
         return tracks.size();
     }
 
-    public List<Musik> getTracks() {
+    public List<Music> getTracks() {
         return Collections.unmodifiableList(tracks);
     }
 
-    public Musik getCurrentTrack() {
+    public Music getCurrentTrack() {
         if (tracks.isEmpty()) {
             return null;
         }
         return tracks.get(currentTrackIndex);
     }
 
-    public Musik nextTrack() {
+    public Music nextTrack() {
         if (tracks.isEmpty()) {
             return null;
         }
@@ -50,7 +52,7 @@ public class Playlist {
         return getCurrentTrack();
     }
 
-    public Musik previousTrack() {
+    public Music previousTrack() {
         if (tracks.isEmpty()) {
             return null;
         }
@@ -58,7 +60,7 @@ public class Playlist {
         return getCurrentTrack();
     }
 
-    public Musik selectTrack(int index) {
+    public Music selectTrack(int index) {
         if (index < 0 || index >= tracks.size()) {
             throw new IndexOutOfBoundsException("track index out of range");
         }
@@ -67,7 +69,7 @@ public class Playlist {
     }
 
     public int getTotalDurationSeconds() {
-        return tracks.stream().mapToInt(Musik::getDurationSeconds).sum();
+        return tracks.stream().mapToInt(Music::getDurationSeconds).sum();
     }
 
     public String getFormattedTotalDuration() {

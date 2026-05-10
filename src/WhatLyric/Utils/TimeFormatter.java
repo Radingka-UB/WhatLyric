@@ -1,4 +1,4 @@
-package WhatLyric;
+package WhatLyric.Utils;
 
 public class TimeFormatter {
     public static String formatDuration(int totalSeconds) {
