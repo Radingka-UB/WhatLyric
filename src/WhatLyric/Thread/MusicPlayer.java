@@ -1,8 +1,6 @@
 package WhatLyric.Thread;
 
 import WhatLyric.Resource.PlayerState;
-import WhatLyric.Model.Music;
-import WhatLyric.Utils.TimeFormatter;
 
 public class MusicPlayer extends Thread{
     private PlayerState state;
