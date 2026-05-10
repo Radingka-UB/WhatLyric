@@ -1,6 +1,6 @@
 package WhatLyric;
 
-import WhatLyric.Model.Musik;
+import WhatLyric.Model.Music;     
 import WhatLyric.Model.Playlist;
 import WhatLyric.Resource.PlayerState;
 import WhatLyric.Thread.*;
@@ -18,15 +18,14 @@ public class Main {
         Playlist playlist = createPlaylist();
         
         PlayerState state = new PlayerState();
-        state.setPlaylist(playlist);
-        state.setCurrentTrackIndex(0);
+        state.loadPlaylist(playlist); 
 
         MusicPlayer musicPlayer = new MusicPlayer(state);
         LyricDisplayer lyricDisplayer = new LyricDisplayer(state);
         NotificationDisplayer notificationDisplayer = new NotificationDisplayer(state);
         ControlDisplayer controlDisplayer = new ControlDisplayer(state);
 
-        System.out.println("Starting all threads...\n");
+        System.out.println("Starting all threads\n");
         musicPlayer.start();
         lyricDisplayer.start();
         notificationDisplayer.start();
@@ -38,7 +37,7 @@ public class Main {
             System.err.println("Main thread interrupted");
         }
 
-        System.out.println("\nShutting down...");
+        System.out.println("\nShutting down");
         musicPlayer.interrupt();
         lyricDisplayer.interrupt();
         notificationDisplayer.interrupt();
@@ -46,59 +45,51 @@ public class Main {
         System.out.println("WhatLyric stopped");
     }
 
-    //Membuat playlist dengan 3 lagu
-
     private static Playlist createPlaylist() {
-        List<Musik> songs = new ArrayList<>();
+        Playlist playlist = new Playlist("WhatLyric Default");
 
         // Lagu 1: Terima Kasih Pak Jokowi
-        Musik lagu1 = new Musik(
+        Music lagu1 = new Music(
             "Terima Kasih Pak Jokowi",
             "Kang Lidan",
-            "240",
+            240,  
             createLirikTerimaKasih()
         );
-        songs.add(lagu1);
+        playlist.addTrack(lagu1);
 
         // Lagu 2: Kicau Mania
-        Musik lagu2 = new Musik(
+        Music lagu2 = new Music(
             "Kicau Mania",
             "Ndarboy Genk, Banditoz Yaow 86, BoyCord",
-            "300",
             createLirikKicauMania()
         );
-        songs.add(lagu2);
+        playlist.addTrack(lagu2);
 
-        // Lagu 3: NO BATIDAO
-        Musik lagu3 = new Musik(
+        //Lagu 3: No Batidao
+        Music lagu3 = new Music(
             "NO BATIDÃO",
             "ZXKAI, slxughter",
-            "180",
+            180,  
             createLirikNoBatidao()
         );
-        songs.add(lagu3);
+        playlist.addTrack(lagu3);
 
-        return new Playlist(songs);
+        return playlist;
     }
-
-    //Lirik: Terima Kasih Pak Jokowi
-
+    
     private static List<String> createLirikTerimaKasih() {
         List<String> lirik = new ArrayList<>();
         lirik.add("[0:00] Terima Kasih Pak Jokowi");
-        lirik.add("[0:05] ");
         lirik.add("[0:05] [Verse 1]");
         lirik.add("[0:05] Jerit payah yang telah kau curahkan");
         lirik.add("[0:10] Tak pernah berhenti bekerja");
         lirik.add("[0:15] Dan tak pernah berkeluh kesah");
         lirik.add("[0:20] Untuk tanah air tercinta");
-        lirik.add("[0:25] ");
         lirik.add("[0:25] [Verse 2]");
         lirik.add("[0:25] Sembilan belas tahun sudah");
         lirik.add("[0:30] Kau mengabdi untuk negara");
         lirik.add("[0:35] Kau tak mengharap tanda jasa");
         lirik.add("[0:40] Dan kau ikhlaskan untuk Indonesia");
-        lirik.add("[0:45] ");
         lirik.add("[0:45] [Chorus]");
         lirik.add("[0:45] Terima kasih Pak Jokowi");
         lirik.add("[0:50] Ribuan desa telah kau datangi");
@@ -108,9 +99,7 @@ public class Main {
         lirik.add("[1:10] Hanya Tuhan yang mampu membalasi");
         lirik.add("[1:15] Kebaikan hati yang selalu kau beri");
         lirik.add("[1:20] Untuk negeri");
-        lirik.add("[1:25] ");
         lirik.add("[1:25] [Instrumental Interlude]");
-        lirik.add("[1:30] ");
         lirik.add("[2:00] [Chorus]");
         lirik.add("[2:00] Terima kasih Pak Jokowi");
         lirik.add("[2:05] Ribuan desa telah kau datangi");
@@ -131,12 +120,9 @@ public class Main {
         return lirik;
     }
 
-    //Lirik: Kicau Mania
-
     private static List<String> createLirikKicauMania() {
         List<String> lirik = new ArrayList<>();
         lirik.add("[0:00] Kicau Mania");
-        lirik.add("[0:05] ");
         lirik.add("[0:05] Tak rumat seka piyik");
         lirik.add("[0:10] Tak loloh nganggo jangkrik");
         lirik.add("[0:15] Aku pamit nggantang, ya, Dhik");
@@ -149,7 +135,6 @@ public class Main {
         lirik.add("[0:50] Kicau, kicau, kicau mania (hm)");
         lirik.add("[0:55] Kicau, kicau, kicau mania (hm)");
         lirik.add("[1:00] Kicau, kicau, kicau mania (hm)");
-        lirik.add("[1:05] ");
         lirik.add("[1:05] Ora nggantang, ora mangan, ra nduwe gaji bulanan");
         lirik.add("[1:10] Lah wong dudu cah kantoran, tangga-tangga padha isin");
         lirik.add("[1:15] Yen kepethuk isih esuk, aku uwis ngelus manuk");
@@ -162,7 +147,6 @@ public class Main {
         lirik.add("[1:50] Kicau, kicau, kicau mania (hm)");
         lirik.add("[1:55] Kicau, kicau, kicau mania (hm)");
         lirik.add("[2:00] Kicau, kicau, kicau mania (hm)");
-        lirik.add("[2:05] ");
         lirik.add("[2:05] Burungku datang, semua senang");
         lirik.add("[2:10] Burung berjuang, suara lantang");
         lirik.add("[2:15] Burung berdendang di atas tiang");
@@ -175,7 +159,6 @@ public class Main {
         lirik.add("[2:50] Kicau, kicau, kicau mania (hm)");
         lirik.add("[2:55] Kicau, kicau, kicau mania (hm)");
         lirik.add("[3:00] Kicau, kicau, kicau mania (hm)");
-        lirik.add("[3:05] ");
         lirik.add("[3:05] Gas pol ndangak, digas pol ndangak-ndangak");
         lirik.add("[3:10] Manukku siap nembak, poinku ra keoyak");
         lirik.add("[3:15] Ra isa gliyak-gliyak, stelan wis gas pol ndangak");
@@ -199,12 +182,9 @@ public class Main {
         return lirik;
     }
 
-    //Lirik: NO BATIDAO
-
     private static List<String> createLirikNoBatidao() {
         List<String> lirik = new ArrayList<>();
         lirik.add("[0:00] NO BATIDÃO");
-        lirik.add("[0:05] ");
         lirik.add("[0:05] Ela, ela desce, ela sobe");
         lirik.add("[0:10] No baile é pressão");
         lirik.add("[0:15] Mina linda, perigosa");
@@ -213,17 +193,14 @@ public class Main {
         lirik.add("[0:30] Não perde a razão");
         lirik.add("[0:35] No batidão, no batidão");
         lirik.add("[0:40] Só pura tentação");
-        lirik.add("[0:45] ");
         lirik.add("[0:45] Ela desce, ela sobe");
         lirik.add("[0:50] No baile é pressão");
         lirik.add("[0:55] Mina linda, perigosa");
         lirik.add("[1:00] Rouba meu coração");
-        lirik.add("[1:05] ");
         lirik.add("[1:05] Ela desce, ela sobe");
         lirik.add("[1:10] No baile é pressão");
         lirik.add("[1:15] Mina linda, perigosa");
         lirik.add("[1:20] Rouba meu coração");
-        lirik.add("[1:25] ");
         lirik.add("[1:25] Ela desce, ela sobe");
         lirik.add("[1:30] No baile é pressão");
         lirik.add("[1:35] Mina linda, perigosa");
@@ -232,7 +209,6 @@ public class Main {
         lirik.add("[1:50] Não perde a razão");
         lirik.add("[1:55] No batidão, no batidão");
         lirik.add("[2:00] Só pura tentação");
-        lirik.add("[2:05] ");
         lirik.add("[2:05] Desce, ela sobe");
         lirik.add("[2:10] No baile é pressão");
         lirik.add("[2:15] Mina linda, perigosa");
@@ -245,10 +221,6 @@ public class Main {
         lirik.add("[2:50] No baile é pressão");
         lirik.add("[2:55] Mina linda, perigosa");
         lirik.add("[3:00] Rouba meu coração");
-        lirik.add("[3:05] Vai quicando, vai jogando");
-        lirik.add("[3:10] Não perde a razão");
-        lirik.add("[3:15] No batidão, no batidão");
-        lirik.add("[3:20] Só pura tentação");
         return lirik;
     }
 }
