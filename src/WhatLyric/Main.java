@@ -43,7 +43,7 @@ public class Main {
         lyricDisplayer.interrupt();
         notificationDisplayer.interrupt();
         
-        System.out.println("WhatLyric stopped. Thank you!");
+        System.out.println("WhatLyric stopped");
     }
 
     //Membuat playlist dengan 3 lagu
