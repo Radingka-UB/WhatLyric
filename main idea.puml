@@ -45,9 +45,35 @@ package WhatLyric{
     }
   }
   package Resource{
+    +enum State{
+      STOPPED
+      PLAYING
+      PAUSED
+    }
     +class PlayerState{
-      +enum State
-      
+      -state:State
+      -currentMusic:Music
+      -currentPositionSeconds:int
+      -playlist:Playlist
+      -{volatile}running:boolean
+      +{synchronized}selectTrack(index:int):void
+      +{synchronized}shutdown():void
+      +PlayerState()
+      +{synchronized}getState():State
+      +{synchronized}getCurrentMusic():Music
+      +{synchronized}getCurrentPositionSeconds():int
+      +{synchronized}getCurrentPositionFormatted():String
+      +{synchronized}getPlaylist():Playlist
+      +{synchronized}loadPlaylist(playlist:Playlist):void
+      +{synchronized}play():void
+      +{synchronized}pause():void
+      +{synchronized}stop():void
+      +{synchronized}seek(seconds:int):void
+      +{synchronized}nextTrack():void
+      +{synchronized}previousTrack():void
+      +{synchronized}tick():void
+      +{synchronized}getStatusSummary():String
+      +{synchronized}toString():String
     }
   }
   package Thread{
@@ -82,6 +108,7 @@ PlayerState <-- ControlDisplayer
 Music <.. NotificationDisplayer
 Music <-- PlayerState
 Playlist <-- PlayerState
+State +-- PlayerState
 TimeFormatter <.. MusicPlayer
 Music <.. MusicPlayer
 TimeFormatter <.. LyricDisplayer
