@@ -1,4 +1,4 @@
-@startuml 
+@startuml TugasMultithreading
 title WhatLyric
 package WhatLyric{
   +class WhatLyric.Main{
@@ -78,29 +78,47 @@ package WhatLyric{
   }
   package Thread{
     +class MusicPlayer extends Thread{
-
+      -state:PlayerState
+      +MusicPlayer()
+      +run():void
     }
     +class LyricDisplayer extends Thread{
-
+      +LyricDisplayer(state:PlayerState)
+      -state:PlayerState
+      +run():void
+      -getLyricAtTime(music:Music,currSecs:int):String
     }
     +class NotificationDisplayer extends Thread{
-
+      -state:PlayerState
+      +NotificationDisplayer(state:PlayerState)
+      +run():void
     }
     +class ControlDisplayer extends Thread{
-
+      -state:PlayerState
+      -playlist:Playlist
+      -scanner:Scanner
+      +ControlDisplayer(state PlayerState,playlist:Playlist)
+      -showMenu():void
+      +run():void
     }
 
   }
   package Utils{
     +class TimeFormatter{
-
+      +{static}formatDuration(totalSeconds:int):String
+      +{static}parseDuration(formatted:String):int
     }
 
   }
 }
+List <-- Music
+Objects <.. Music
+Collections <.. Music
 Music <-- Playlist
 ArrayList <-- Playlist
 List <-- Playlist
+Objects <.. Playlist
+Collections <.. Playlist
 PlayerState <-- MusicPlayer
 PlayerState <-- LyricDisplayer
 PlayerState <-- NotificationDisplayer
@@ -109,11 +127,14 @@ Music <.. NotificationDisplayer
 Music <-- PlayerState
 Playlist <-- PlayerState
 State +-- PlayerState
+Objects <.. PlayerState
 TimeFormatter <.. MusicPlayer
 Music <.. MusicPlayer
 TimeFormatter <.. LyricDisplayer
-Scanner <.. ControlDisplayer
-TimeFormatter <.. ControlDisplayer
+List <.. LyricDisplayer
+Scanner <-- ControlDisplayer
+Playlist <-- ControlDisplayer
+Music <.. ControlDisplayer
 Playlist <.. Main
 PlayerState <.. Main
 MusicPlayer <.. Main
