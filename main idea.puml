@@ -3,13 +3,45 @@ title WhatLyric
 package WhatLyric{
   +class WhatLyric.Main{
     +{static}main(args:String[]):void
+    -{static}createPlaylist():Playlist
+    -{static}createLirikTerimaKasih():List<String>
+    -{static}createLirikKicauMania():List<String>
+    -{static}createLirikNoBatidao():List<String>
   }
   package Model{
     +class Music{
-
+      -{final}title:String
+      -{final}artist:String
+      -{final}durationSeconds:int
+      -{final}lyrics:List<String>
+      +Music(title:String,artist:String,durationSeconds:int,lyrics:List<String>)
+      +getTitle():String
+      +getArtist():String
+      +getDurationSeconds():int
+      +getFormattedDuration():String
+      +addLyricLine(lyricLine:String):void
+      getLyryics():List<String>
+      +getLyricsPreview():String
+      +toString():String
     }
     +class Playlist{
-
+      -{final}name:String
+      -{final}tracks:List<Music>
+      -currentTrackIndex:int
+      +Playlist(name:String)
+      +Playlist(tracks:List<Music>)
+      +getName():String
+      +addTrack(music:Music):void
+      +removeTrack(music:Music):boolean
+      +getTrackCount():int
+      +getTracks():List<Music>
+      +getCurrentTrack():Music
+      +nextTrack():Music
+      +previousTrack():Music
+      +selectTrack(index:int):Music
+      +getTotalDurationSeconds():int
+      +getFormattedTotalDuration():String
+      +toString():String
     }
   }
   package Resource{
@@ -60,6 +92,8 @@ MusicPlayer <.. Main
 LyricDisplayer <.. Main
 NotificationDisplayer <.. Main
 ControlDisplayer <.. Main
+ArrayList <.. Main
+List <.. Main
 /'
 -ini program pemutar musik multithreading
 -tujuan program adalah implementasi thread maka user bisa input kapanpun walaupun program sedang menjalankan kegiatan lain
