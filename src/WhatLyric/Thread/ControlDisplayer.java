@@ -59,7 +59,7 @@ public class ControlDisplayer extends Thread{
                     try {
                         state.nextTrack();
                         Music nextMusic =state.getCurrentMusic();
-                        System.out.println("Starting Next Music: "+(nextMusic!=null?nextMusic.getTitle():"No Music"));
+                        System.out.println("Selected Next Music: "+(nextMusic!=null?nextMusic.getTitle():"No Music"));
                     } catch (IllegalStateException e) {
                         System.out.println(e.getMessage());
                     }
@@ -68,7 +68,7 @@ public class ControlDisplayer extends Thread{
                     try{
                         state.previousTrack();
                         Music prevMusic=state.getCurrentMusic();
-                        System.out.println("Starting Prev Music: "+(prevMusic!=null?prevMusic.getTitle():"No Music"));
+                        System.out.println("Selected Prev Music: "+(prevMusic!=null?prevMusic.getTitle():"No Music"));
                     }catch(IllegalStateException e){
                         System.out.println(e.getMessage());
                     }
